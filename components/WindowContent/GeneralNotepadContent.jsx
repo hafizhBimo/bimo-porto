@@ -37,7 +37,7 @@ export default function GeneralNotepad({
   return (
     <div
       className="
-        absolute w-[520px]
+        absolute w-130
         bg-gray-200 border-4
         border-t-white border-l-white
         border-b-gray-700 border-r-gray-700
@@ -71,30 +71,52 @@ export default function GeneralNotepad({
       </div>
 
       {/* Content */}
-      <div className="bg-white border border-gray-400 m-2 p-3 font-mono h-[280px] overflow-y-auto whitespace-pre-wrap text-black text-base">
-{`----------------------------------------------
-   Welcome to My Portfolio
-----------------------------------------------
+      <div className="bg-white border border-gray-400 m-2 p-3 font-mono h-70 overflow-y-auto text-black text-base">
+        <div>
+          <pre className="m-0">----------------------------------------------</pre>
 
-This website is designed as a desktop-style
-environment inspired by classic Windows systems.
+          <div>
+            <strong>
+            Welcome to My Portfolio
+            </strong>
+          </div>
 
-Here you can explore:
+          <pre className="m-0">----------------------------------------------</pre>
 
-- About Me
-- Professional Experience
-- Education Background
-- Technical Skills
+          <p>
+            This website is designed as a desktop-style environment inspired by
+            classic Windows systems.
+          </p>
 
-Each section opens as a separate window,
-just like a real operating system.
+          <p>Here you can explore:</p>
 
-Feel free to explore and interact.
+          <ul>
+            <li>About Me</li>
+            <li>Professional Experience</li>
+            <li>Education Background</li>
+            <li>Technical Skills</li>
+          </ul>
 
-----------------------------------------------
-Thank you for visiting.
-`}
+          <pre className="m-0">----------------------------------------------</pre>
+
+          <p>
+            Each section opens as a separate window, just like a real operating
+            system. Feel free to explore and interact.
+          </p>
+
+          <p>Thank you for visiting.</p>
+
+          <pre className="m-0">----------------------------------------------</pre>
+
+          <pre className="m-0">
+            (c) Hafizh Bimo 1997–2025
+            All rights reserved.
+          </pre>
+
+          <pre className="m-0">----------------------------------------------</pre>
+        </div>
       </div>
+
     </div>
   );
 }

@@ -13,13 +13,11 @@ export default function Desktop() {
     const [activeWindow, setActiveWindow] = useState("notepad");
 
     const openWindow = (key) => {
-        // If already open, just bring to front
-        if (openWindows.includes(key)) {
-            focusWindow(key);
-            return;
-        }
+        setOpenWindows((prev) => {
+            if (prev.includes(key)) return prev;
+            return [...prev, key];
+        });
 
-        setOpenWindows((prev) => [...prev, key]);
         focusWindow(key);
     };
 
@@ -101,7 +99,7 @@ export default function Desktop() {
                         <GeneralNotepad
                             key="notepad"
                             id="notepad"
-                            zIndex={zIndexes["notepad"] || 10}
+                            zIndex={zIndexes["notepad"] || 1}
                             isActive={activeWindow === "notepad"}
                             onClose={closeWindow}
                             onFocus={focusWindow}
