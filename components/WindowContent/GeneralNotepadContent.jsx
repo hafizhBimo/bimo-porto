@@ -57,17 +57,29 @@ export default function GeneralNotepad({
           General - Notepad
         </span>
         <button
-          onClick={() => onClose(id)}
-          className="w-4 h-4 bg-red-600 border border-black"
-        />
+          onClick={(e) => {
+            e.stopPropagation();
+            onClose(id);
+          }}
+          className="
+        w-4 h-4
+        bg-gray-200
+        border border-black
+        flex items-center justify-center
+        text-black
+      "
+          title="Close"
+        >
+          ✕
+        </button>
       </div>
 
       {/* Menu bar */}
-      <div className="flex gap-4 px-2 py-1 bg-gray-300 border-b border-gray-500 font-mono text-base">
-        <span>File</span>
-        <span>Edit</span>
-        <span>Search</span>
-        <span>Help</span>
+      <div className="flex gap-4 px-2 py-1 bg-gray-300 border-b border-gray-500 font-mono text-base text-gray-500 select-none">
+        <span><span className="underline">F</span>ile</span>
+        <span><span className="underline">E</span>dit</span>
+        <span><span className="underline">S</span>earch</span>
+        <span><span className="underline">H</span>elp</span>
       </div>
 
       {/* Content */}
@@ -77,7 +89,7 @@ export default function GeneralNotepad({
 
           <div>
             <strong>
-            Welcome to My Portfolio
+              Welcome to My Portfolio
             </strong>
           </div>
 

@@ -53,10 +53,21 @@ export default function Window({
       >
         <span className="text-lg">{title}</span>
         <button
-          onClick={() => onClose(id)}
-          className="w-4 h-4 bg-red-600 border border-black"
-          aria-label="Close window"
-        />
+          onClick={(e) => {
+            e.stopPropagation();
+            onClose(id);
+          }}
+          className="
+        w-4 h-4
+        bg-gray-200
+        border border-black
+        flex items-center justify-center
+        text-black
+      "
+          title="Close"
+        >
+          ✕
+        </button>
       </div>
 
       {/* Window Content */}
