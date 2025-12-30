@@ -19,7 +19,7 @@ export default function AboutContent() {
             />
           </div>
           <p className="text-center mt-2 text-xs">
-            Hafizh Bimo
+            Hafizh Bimo Wicaksono
           </p>
         </div>
 
@@ -29,9 +29,9 @@ export default function AboutContent() {
             Status
           </h4>
           <div className="space-y-1 text-xs">
-            <p>Role: Software Engineer</p>
+            <p>Role: Fullstack Developer</p>
             <p>Location: Jakarta, ID</p>
-            <p>Experience: Backend / Systems</p>
+            <p>Experience: 2 yrs</p>
           </div>
         </div>
 
@@ -48,13 +48,16 @@ export default function AboutContent() {
 
           <div className="grid grid-cols-2 gap-x-6 gap-y-1 text-xs">
             <p><strong>Name</strong></p>
-            <p>Hafizh Bimo</p>
+            <p>Hafizh Bimo Wicaksono</p>
 
             <p><strong>Role</strong></p>
-            <p>Software Engineer</p>
+            <p>Fullstack Developer</p>
 
             <p><strong>Location</strong></p>
             <p>Jakarta, Indonesia</p>
+
+            <p><strong>Experience</strong></p>
+            <p>2 years</p>
           </div>
         </div>
 

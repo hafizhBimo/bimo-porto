@@ -103,20 +103,26 @@ export default function GeneralNotepad({
           <p>Here you can explore:</p>
 
           <ul>
-            <li>About Me</li>
-            <li>Professional Experience</li>
-            <li>Education Background</li>
-            <li>Technical Skills</li>
+            <li>- About Me</li>
+            <li>- Professional Experience</li>
+            <li>- Education Background</li>
+            <li>- Technical Skills</li>
           </ul>
 
           <pre className="m-0">----------------------------------------------</pre>
 
+          <p>Thank you for visiting.</p>
+
+          <pre className="m-0">----------------------------------------------</pre>
+
           <p>
-            Each section opens as a separate window, just like a real operating
-            system. Feel free to explore and interact.
+            This portfolio is deployed and hosted on my personal home server.
           </p>
 
-          <p>Thank you for visiting.</p>
+          <p>
+            System services, uptime, and infrastructure are managed independently
+            as part of my learning and experimentation in self-hosting.
+          </p>
 
           <pre className="m-0">----------------------------------------------</pre>
 

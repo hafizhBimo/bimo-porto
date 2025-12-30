@@ -1,69 +1,107 @@
 "use client";
 
-import { useEffect, useState } from "react";
+import { useState, useEffect } from "react";
 import { windowsData } from "./data";
+import StartMenu from "./TaskbarContent/StartMenu";
 
 const specialTitles = {
   notepad: "General - Notepad",
+  system: "System Status",
 };
 
 export default function Taskbar({
   openWindows,
   activeWindow,
   onToggleWindow,
+  onOpenWindow,
 }) {
+  const [startOpen, setStartOpen] = useState(false);
   const [time, setTime] = useState("");
 
+  // Clock updater
   useEffect(() => {
     const updateTime = () => {
       const now = new Date();
-      setTime(
-        now.toLocaleTimeString([], {
-          hour: "2-digit",
-          minute: "2-digit",
-        })
-      );
+      const hours = now.getHours().toString().padStart(2, "0");
+      const minutes = now.getMinutes().toString().padStart(2, "0");
+      setTime(`${hours}:${minutes}`);
     };
 
     updateTime(); // initial
-    const interval = setInterval(updateTime, 1000);
+    const interval = setInterval(updateTime, 60000); // update every minute
 
     return () => clearInterval(interval);
   }, []);
 
   return (
-    <div className="absolute bottom-0 left-0 right-0 h-10 bg-gray-300 border-t-2 border-white flex items-center px-2 text-gray-800">
-      {/* Start Button */}
-      <div className="bg-gray-200 border-2 border-t-white border-l-white border-b-gray-700 border-r-gray-700 px-3 py-1 text-base font-bold">
-        Start
-      </div>
+    <>
+      {/* Start Menu */}
+      {startOpen && (
+        <div onClick={() => setStartOpen(false)}>
+          <StartMenu
+            onOpenWindow={(key) => {
+              onOpenWindow(key);
+              setStartOpen(false);
+            }}
+          />
+        </div>
+      )}
 
-      {/* Window Tabs */}
-      <div className="flex gap-2 ml-2 flex-1">
-        {openWindows.map((key) => {
-          const title =
-            windowsData[key]?.title || specialTitles[key] || key;
+      {/* Taskbar */}
+      <div className="absolute bottom-0 left-0 right-0 h-10 bg-gray-300 border-t-2 border-white flex items-center px-2 text-gray-800">
+        {/* Left side */}
+        <div className="flex items-center gap-2">
+          {/* Start Button */}
+          <button
+            onClick={() => setStartOpen(!startOpen)}
+            className={`px-3 py-1 font-bold border-2 ${
+              startOpen
+                ? "bg-white border-black"
+                : "bg-gray-200 border-t-white border-l-white border-b-gray-700 border-r-gray-700"
+            }`}
+          >
+            Start
+          </button>
 
-          return (
-            <button
-              key={key}
-              onClick={() => onToggleWindow(key)}
-              className={`px-3 py-1 border text-base ${
-                activeWindow === key
-                  ? "bg-white border-black"
-                  : "bg-gray-200 border-gray-500"
-              }`}
-            >
-              {title}
-            </button>
-          );
-        })}
-      </div>
+          {/* Window Tabs */}
+          {openWindows.map((key) => {
+            const title =
+              windowsData[key]?.title || specialTitles[key] || key;
 
-      {/* Clock */}
-      <div className="px-3 py-1 bg-gray-200 border-2 border-t-gray-700 border-l-gray-700 border-b-white border-r-white text-base font-mono">
-        {time}
+            return (
+              <button
+                key={key}
+                onClick={() => onToggleWindow(key)}
+                className={`px-3 py-1 border text-base ${
+                  activeWindow === key
+                    ? "bg-white border-black"
+                    : "bg-gray-200 border-gray-500"
+                }`}
+              >
+                {title}
+              </button>
+            );
+          })}
+        </div>
+
+        {/* Spacer */}
+        <div className="flex-1" />
+
+        {/* Clock */}
+        <div
+          className="
+            px-3 py-1
+            border
+            border-t-gray-700 border-l-gray-700
+            border-b-white border-r-white
+            bg-gray-200
+            text-sm
+            font-mono
+          "
+        >
+          {time}
+        </div>
       </div>
-    </div>
+    </>
   );
 }

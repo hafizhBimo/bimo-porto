@@ -86,7 +86,9 @@ export default function Desktop() {
                 <Taskbar
                     openWindows={openWindows}
                     activeWindow={activeWindow}
+                    setActiveWindow={setActiveWindow}
                     onToggleWindow={toggleFromTaskbar}
+                    onOpenWindow={openWindow}
                 />
             </div>
 
