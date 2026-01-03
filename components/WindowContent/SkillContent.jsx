@@ -6,8 +6,8 @@ export default function SkillsContent() {
         <ul className="mt-1">
           <li>JavaScript</li>
           <li>TypeScript</li>
-          <li>Python</li>
-          <li>Java</li>
+          <li>dotNet</li>
+          <li>PHP</li>
         </ul>
       </div>
 
@@ -17,6 +17,8 @@ export default function SkillsContent() {
           <li>React</li>
           <li>Next.js</li>
           <li>NestJS</li>
+          <li>Express.js</li>
+          <li>Laravel</li>
         </ul>
       </div>
 
@@ -35,6 +37,7 @@ export default function SkillsContent() {
           <li>Docker</li>
           <li>Git</li>
           <li>Linux</li>
+          <li>RabbitMq / BullMq</li>
         </ul>
       </div>
     </div>

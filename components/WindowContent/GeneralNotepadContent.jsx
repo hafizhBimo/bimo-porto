@@ -85,7 +85,32 @@ export default function GeneralNotepad({
       {/* Content */}
       <div className="bg-white border border-gray-400 m-2 p-3 font-mono h-70 overflow-y-auto text-black text-base">
         <div>
+          <p>
+            This portfolio is deployed and hosted on my personal home server.
+          </p>
+
+          <p>
+            System services, uptime, and infrastructure are managed independently
+            as part of my learning and experimentation in self-hosting.
+          </p>
+
           <pre className="m-0">----------------------------------------------</pre>
+
+          <p>
+            Note:
+          </p>
+
+          <p>
+            This website is currently optimized for desktop viewing.
+          </p>
+
+          <p>
+            Mobile and responsive layout support is not available at the moment,
+            but may be added in future updates as the project evolves.
+          </p>
+
+          <pre className="m-0">----------------------------------------------</pre>
+
 
           <div>
             <strong>
@@ -112,17 +137,6 @@ export default function GeneralNotepad({
           <pre className="m-0">----------------------------------------------</pre>
 
           <p>Thank you for visiting.</p>
-
-          <pre className="m-0">----------------------------------------------</pre>
-
-          <p>
-            This portfolio is deployed and hosted on my personal home server.
-          </p>
-
-          <p>
-            System services, uptime, and infrastructure are managed independently
-            as part of my learning and experimentation in self-hosting.
-          </p>
 
           <pre className="m-0">----------------------------------------------</pre>
 
