@@ -94,7 +94,6 @@ export default function Desktop() {
 
             {/* Open Windows */}
             {openWindows.map((key, index) => {
-                console.log("Rendering window:", key);
                 // SPECIAL WINDOW
                 if (key === "notepad") {
                     return (
