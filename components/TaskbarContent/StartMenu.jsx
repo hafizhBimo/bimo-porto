@@ -1,6 +1,10 @@
 "use client";
 
-export default function StartMenu({ onOpenWindow, onClose }) {
+import { WINDOWS_CONFIG } from "@/config/windowsConfig";
+
+export default function StartMenu({ onOpenWindow }) {
+  const windowList = Object.values(WINDOWS_CONFIG);
+
   return (
     <div
       className="absolute bottom-10 left-2 w-56
@@ -11,11 +15,13 @@ export default function StartMenu({ onOpenWindow, onClose }) {
     >
       {/* Programs */}
       <div className="border-b border-gray-400">
-        <MenuItem label="📁 About Me" onClick={() => onOpenWindow("about")} />
-        <MenuItem label="📁 Experience" onClick={() => onOpenWindow("experience")} />
-        <MenuItem label="📁 Education" onClick={() => onOpenWindow("education")} />
-        <MenuItem label="📁 Skills" onClick={() => onOpenWindow("skills")} />
-        <MenuItem label="📝 Notepad" onClick={() => onOpenWindow("notepad")} />
+        {windowList.map((item) => (
+          <MenuItem
+            key={item.id}
+            label={item.title}
+            onClick={() => onOpenWindow(item.id)}
+          />
+        ))}
       </div>
 
       {/* Settings */}
@@ -33,10 +39,11 @@ function MenuItem({ label, onClick, disabled = false }) {
         if (!disabled && onClick) onClick();
       }}
       className={`
-        px-3 py-1 font-mono
-        ${disabled
-          ? "text-gray-500 bg-gray-200 cursor-not-allowed"
-          : "hover:bg-blue-800 hover:text-white cursor-pointer"
+        px-3 py-1 font-mono flex items-center gap-2
+        ${
+          disabled
+            ? "text-gray-500 bg-gray-200 cursor-not-allowed"
+            : "hover:bg-blue-800 hover:text-white cursor-pointer"
         }
       `}
     >

@@ -1,77 +1,57 @@
 "use client";
 
-import React, { useRef, useState } from "react";
+import React from "react";
+import { useDraggable } from "@/hooks/useDraggable";
 
 export default function Window({
   id,
   title,
   content,
+  children,
+  menuBar,
   onClose,
   onFocus,
-  zIndex,
+  zIndex = 1,
   initialPosition = { x: 120, y: 120 },
+  widthClass = "w-96",
 }) {
-  const [position, setPosition] = useState(initialPosition);
-  const isDragging = useRef(false);
-  const dragOffset = useRef({ x: 0, y: 0 });
+  const { position, handleMouseDown, handleMouseMove, handleMouseUp } =
+    useDraggable(initialPosition, onFocus, id);
 
-  const handleMouseDown = (e) => {
-    isDragging.current = true;
-    dragOffset.current = {
-      x: e.clientX - position.x,
-      y: e.clientY - position.y,
-    };
-    onFocus(id);
-  };
-
-  const handleMouseMove = (e) => {
-    if (!isDragging.current) return;
-
-    setPosition({
-      x: e.clientX - dragOffset.current.x,
-      y: e.clientY - dragOffset.current.y,
-    });
-  };
-
-  const handleMouseUp = () => {
-    isDragging.current = false;
-  };
+  const windowBody = content || children;
 
   return (
     <div
-      className="absolute w-96 bg-gray-200 border-4 border-t-white border-l-white border-b-gray-700 border-r-gray-700 shadow-lg select-none"
+      className={`absolute ${widthClass} bg-gray-200 border-4 border-t-white border-l-white border-b-gray-700 border-r-gray-700 shadow-lg select-none`}
       style={{ left: position.x, top: position.y, zIndex }}
       onMouseMove={handleMouseMove}
       onMouseUp={handleMouseUp}
       onMouseLeave={handleMouseUp}
-      onMouseDown={() => onFocus(id)}
+      onMouseDown={() => onFocus && onFocus(id)}
     >
       {/* Title Bar */}
       <div
         className="flex justify-between items-center bg-blue-800 px-2 py-1 cursor-move text-white"
         onMouseDown={handleMouseDown}
       >
-        <span className="text-lg">{title}</span>
+        <span className="text-lg font-mono">{title}</span>
         <button
           onClick={(e) => {
             e.stopPropagation();
-            onClose(id);
+            if (onClose) onClose(id);
           }}
-          className="
-        w-4 h-4
-        bg-gray-200
-        border border-black
-        flex items-center justify-center
-        text-black
-      "
+          className="w-4 h-4 bg-gray-200 border border-black flex items-center justify-center text-black"
           title="Close"
         >
           ✕
         </button>
       </div>
 
+      {/* Optional Menu Bar (e.g. for Notepad) */}
+      {menuBar}
+
       {/* Window Content */}
-      <div className="p-4 bg-white text-base">{content}</div>
+      <div className="p-4 bg-white text-base">{windowBody}</div>
     </div>
   );
 }
